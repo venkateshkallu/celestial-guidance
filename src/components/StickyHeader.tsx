@@ -29,8 +29,16 @@ const StickyHeader = () => {
           : "bg-transparent py-4"
       }`}
     >
-      <div className="container flex items-center justify-between md:justify-end">
-        {/* Desktop nav - left side */}
+      <div className="container flex items-center justify-between">
+        {/* Logo - left side */}
+        <a href="#home" className="flex items-center gap-2 group">
+          <span className="text-2xl">🕉</span>
+          <span className="shimmer-text font-serif text-xl md:text-2xl font-bold tracking-widest uppercase">
+            Jyotish Guru
+          </span>
+        </a>
+
+        {/* Desktop nav - right side */}
         <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
           {NAV_LINKS.map((link) => (
             <a
@@ -55,22 +63,6 @@ const StickyHeader = () => {
             </Button>
           </div>
         </nav>
-
-        {/* Logo - right side */}
-        <a href="#home" className="hidden md:flex items-center gap-2 group">
-          <span className="text-2xl">🕉</span>
-          <span className="shimmer-text font-serif text-xl md:text-2xl font-bold tracking-widest uppercase">
-            Jyotish Guru
-          </span>
-        </a>
-
-        {/* Mobile logo - left */}
-        <a href="#home" className="md:hidden flex items-center gap-1">
-          <span className="text-xl">🕉</span>
-          <span className="shimmer-text font-serif text-lg font-bold tracking-widest uppercase">
-            Jyotish Guru
-          </span>
-        </a>
 
         {/* Mobile hamburger - right */}
         <button
