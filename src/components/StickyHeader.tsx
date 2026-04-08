@@ -23,16 +23,15 @@ const StickyHeader = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? "bg-background/95 backdrop-blur-md shadow-[0_2px_20px_hsla(42,85%,55%,0.1)] py-2"
           : "bg-transparent py-4"
-      }`}
+        }`}
     >
       <div className="container flex items-center justify-between">
         {/* Logo - left side */}
         <a href="#home" className="flex items-center gap-2 group">
-          <span className="text-2xl">🕉</span>
+          <span className="text-xl md:text-2xl">🕉</span>
           <span className="shimmer-text font-serif text-xl md:text-2xl font-bold tracking-widest uppercase">
             Jyotish Guru
           </span>

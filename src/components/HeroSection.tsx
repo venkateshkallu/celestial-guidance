@@ -12,13 +12,13 @@ const HeroSection = () => (
     <div className="container relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12 pt-28 pb-16 md:py-0">
       {/* Left content */}
       <motion.div
-        className="flex-1 text-center md:text-left"
+        className="flex-1 text-center md:text-left space-y-6 md:space-y-10"
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <motion.div
-          className="flex items-center gap-2 justify-center md:justify-start mb-6"
+          className="flex items-center gap-2 justify-center md:justify-start"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
