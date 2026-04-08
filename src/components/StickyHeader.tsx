@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, MessageCircle, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
+  { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
   { label: "Testimonials", href: "#testimonials" },
@@ -21,40 +23,49 @@ const StickyHeader = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-primary/95 backdrop-blur-sm shadow-lg py-2"
-          : "bg-primary py-4"
+          ? "bg-background/95 backdrop-blur-md shadow-[0_2px_20px_hsla(42,85%,55%,0.1)] py-2"
+          : "bg-transparent py-4"
       }`}
     >
       <div className="container flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <span className="text-accent font-serif text-xl md:text-2xl font-bold tracking-wide">
-            ✦ Jyotish Guru
+        <a href="#home" className="flex items-center gap-2 group">
+          <span className="text-2xl">🕉</span>
+          <span className="shimmer-text font-serif text-xl md:text-2xl font-bold tracking-widest uppercase">
+            Jyotish Guru
           </span>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
+        <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-primary-foreground/80 hover:text-accent transition-colors text-sm font-sans font-medium"
+              className="relative px-4 py-2 text-foreground/70 hover:text-accent transition-colors text-sm font-sans font-medium group"
             >
               {link.label}
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-3/4" />
             </a>
           ))}
-          <Button variant="gold" size="sm" asChild>
-            <a href="tel:+919121878363">
-              <Phone className="w-4 h-4" /> Call Now
-            </a>
-          </Button>
+          <div className="flex items-center gap-2 ml-4">
+            <Button variant="gold" size="sm" asChild>
+              <a href="tel:+919121878363">
+                <Phone className="w-4 h-4" /> Call Now
+              </a>
+            </Button>
+            <Button variant="navy-outline" size="sm" className="border-accent text-accent hover:bg-accent hover:text-background" asChild>
+              <a href="https://wa.me/919121878363?text=Hello%20I%27d%20like%20a%20kundli%20consultation" target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="w-4 h-4" /> WhatsApp
+              </a>
+            </Button>
+          </div>
         </nav>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-primary-foreground p-2"
+          className="md:hidden text-foreground p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -63,25 +74,40 @@ const StickyHeader = () => {
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <nav className="md:hidden bg-primary border-t border-primary-foreground/10 px-4 pb-4" aria-label="Mobile navigation">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="block py-3 text-primary-foreground/80 hover:text-accent transition-colors font-sans"
-            >
-              {link.label}
-            </a>
-          ))}
-          <Button variant="gold" size="sm" className="w-full mt-2" asChild>
-            <a href="tel:+919121878363">
-              <Phone className="w-4 h-4" /> Call Now
-            </a>
-          </Button>
-        </nav>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-background/98 backdrop-blur-md border-t border-accent/10 px-4 pb-4 overflow-hidden"
+            aria-label="Mobile navigation"
+          >
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block py-3 text-foreground/80 hover:text-accent transition-colors font-sans border-b border-border/30 last:border-0"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="flex gap-2 mt-4">
+              <Button variant="gold" size="sm" className="flex-1" asChild>
+                <a href="tel:+919121878363">
+                  <Phone className="w-4 h-4" /> Call
+                </a>
+              </Button>
+              <Button variant="navy-outline" size="sm" className="flex-1 border-accent text-accent" asChild>
+                <a href="https://wa.me/919121878363?text=Hello%20I%27d%20like%20a%20kundli%20consultation" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="w-4 h-4" /> WhatsApp
+                </a>
+              </Button>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
