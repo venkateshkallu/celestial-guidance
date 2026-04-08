@@ -29,15 +29,8 @@ const StickyHeader = () => {
           : "bg-transparent py-4"
       }`}
     >
-      <div className="container flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 group">
-          <span className="text-2xl">🕉</span>
-          <span className="shimmer-text font-serif text-xl md:text-2xl font-bold tracking-widest uppercase">
-            Jyotish Guru
-          </span>
-        </a>
-
-        {/* Desktop nav */}
+      <div className="container flex items-center justify-between md:justify-end">
+        {/* Desktop nav - left side */}
         <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
           {NAV_LINKS.map((link) => (
             <a
@@ -63,7 +56,15 @@ const StickyHeader = () => {
           </div>
         </nav>
 
-        {/* Mobile hamburger */}
+        {/* Logo - right side */}
+        <a href="#home" className="hidden md:flex items-center gap-2 group">
+          <span className="text-2xl">🕉</span>
+          <span className="shimmer-text font-serif text-xl md:text-2xl font-bold tracking-widest uppercase">
+            Jyotish Guru
+          </span>
+        </a>
+
+        {/* Mobile hamburger - left */}
         <button
           className="md:hidden text-foreground p-2"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -71,6 +72,14 @@ const StickyHeader = () => {
         >
           {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
+
+        {/* Mobile logo - right */}
+        <a href="#home" className="md:hidden flex items-center gap-1">
+          <span className="text-xl">🕉</span>
+          <span className="shimmer-text font-serif text-lg font-bold tracking-widest uppercase">
+            Jyotish Guru
+          </span>
+        </a>
       </div>
 
       {/* Mobile menu */}
