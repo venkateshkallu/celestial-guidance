@@ -64,7 +64,15 @@ const StickyHeader = () => {
           </span>
         </a>
 
-        {/* Mobile hamburger - left */}
+        {/* Mobile logo - left */}
+        <a href="#home" className="md:hidden flex items-center gap-1">
+          <span className="text-xl">🕉</span>
+          <span className="shimmer-text font-serif text-lg font-bold tracking-widest uppercase">
+            Jyotish Guru
+          </span>
+        </a>
+
+        {/* Mobile hamburger - right */}
         <button
           className="md:hidden text-foreground p-2"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -72,14 +80,6 @@ const StickyHeader = () => {
         >
           {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
-
-        {/* Mobile logo - right */}
-        <a href="#home" className="md:hidden flex items-center gap-1">
-          <span className="text-xl">🕉</span>
-          <span className="shimmer-text font-serif text-lg font-bold tracking-widest uppercase">
-            Jyotish Guru
-          </span>
-        </a>
       </div>
 
       {/* Mobile menu */}
